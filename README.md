@@ -7,7 +7,7 @@
 ![Google Calendar](https://img.shields.io/badge/Google%20Calendar-API-4285F4?logo=googlecalendar&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-> 🛑 **CRITICAL NOTICE: PLEASE READ UNTIL THE END!**
+> 🛑 **CRITICAL NOTICE: PLEASE READ UNTIL THE END!**  
 > Before cloning or deploying this repository, **you MUST read the "Limitations & Disclaimers" section at the bottom of this page.** This specific version utilizes a unique auto-destructing RAM-based memory architecture designed to balance user experience with API token efficiency.
 
 ## 📌 Overview
