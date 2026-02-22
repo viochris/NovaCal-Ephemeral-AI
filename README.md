@@ -61,6 +61,8 @@ Native LangChain search tools (`CalendarSearchEvents`) are intentionally disable
 Generative models like Gemini 2.5 Flash can occasionally struggle with multi-turn context correlation. Even with explicit system instructions to check the chat history first, the AI might become overly cautious and ask to re-verify a detail you provided earlier. If this looping behavior occurs, explicitly command it to *"just create it with the provided details"*.
 ### 5. Trigger Word Omission (Memory Leak Risk)
 The auto-destruct mechanism relies entirely on the LLM explicitly outputting the string `[TASK_DONE]` after a successful CRUD operation. While the system prompt strictly enforces this, generative AI models can occasionally hallucinate or fail to append this trigger word. If this happens, the user's conversational memory will remain active in the RAM rather than being purged, which may carry unwanted context into their next scheduling request.
+### 6. Non-Task Context Retention
+The auto-destruct signal `[TASK_DONE]` is only triggered upon the successful execution of a Calendar CRUD operation. Consequently, if you engage in a general conversation or discuss topics unrelated to scheduling, the memory will not be purged. The AI will continue to retain this non-essential dialogue in the RAM until a calendar task is finally completed or the server restarts.
 
 ---
 
