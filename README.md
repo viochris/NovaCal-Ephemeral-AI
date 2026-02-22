@@ -59,15 +59,16 @@ The time boundary extraction in the custom fetcher tools currently uses a fixed 
 Native LangChain search tools (`CalendarSearchEvents`) are intentionally disabled/banned in the system prompt due to instability, replaced entirely by custom-built extraction functions for maximum reliability.
 ### 4. Occasional Contextual Amnesia (Over-Caution)
 Generative models like Gemini 2.5 Flash can occasionally struggle with multi-turn context correlation. Even with explicit system instructions to check the chat history first, the AI might become overly cautious and ask to re-verify a detail you provided earlier. If this looping behavior occurs, explicitly command it to *"just create it with the provided details"*.
+### 5. Trigger Word Omission (Memory Leak Risk)
+The auto-destruct mechanism relies entirely on the LLM explicitly outputting the string `[TASK_DONE]` after a successful CRUD operation. While the system prompt strictly enforces this, generative AI models can occasionally hallucinate or fail to append this trigger word. If this happens, the user's conversational memory will remain active in the RAM rather than being purged, which may carry unwanted context into their next scheduling request.
 
 ---
 
 > 💡 **DEVELOPER'S VERDICT & RECOMMENDATION**
 > 
-> **The Ultimate Sweet Spot:** This Ephemeral architecture represents the best of both worlds. It provides the **excellent User Experience** of a conversational bot (allowing you to answer follow-up questions if you forget to specify a time or date) while completely eliminating the **token-draining and hallucination risks** of persistent SQL memory. By destroying the memory buffer immediately after a successful action, the LLM stays hyper-focused and highly cost-efficient. **This is the recommended architecture for daily, practical Telegram usage.**
+> **The Balanced Architecture:** This Ephemeral approach offers an optimal compromise between user experience and system efficiency. It maintains the natural conversational flow necessary to answer follow-up questions (e.g., prompting for a missing time or date) while completely avoiding the token bloat and context degradation associated with persistent SQL memory. By purging the memory buffer immediately after a successful API action, the LLM remains highly focused and cost-efficient. **This is the recommended architecture for daily, practical Telegram usage.**
 
 ## 📦 Installation & Deployment
-
 1.  **Clone the Repository**
     ```bash
     git clone https://github.com/viochris/NovaCal-Ephemeral-AI.git
