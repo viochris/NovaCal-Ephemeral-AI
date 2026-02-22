@@ -100,7 +100,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     Handles the standard Telegram /start command.
 
     This asynchronous function serves as the primary entry point when a user first 
-    interacts with the bot. It welcomes the user and introduces the stateful NovaCal AI.
+    interacts with the bot. It welcomes the user and introduces the ephemeral NovaCal AI.
 
     Args:
         update (telegram.Update): The payload containing incoming message details.
@@ -112,26 +112,26 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 
     # 2. Construct the welcoming interface text for a Context-Aware Bot
     welcome_text = (
-        "🤖 **Hello! I am NovaCal AI.**\n"
+        "🤖 *Hello! I am NovaCal AI.*\n"
         "I am your highly capable personal calendar assistant. To ensure smooth scheduling, please read my operational guidelines below:\n\n"
         
-        "🧠 **1. Conversational Memory (Stateful)**\n"
-        "I am equipped with short-term memory! We can converse naturally step-by-step. "
-        "*(e.g., You can say 'Schedule a meeting tomorrow', and if I ask 'What time?', you can just reply 'at 4 PM'.)*\n\n"
+        "🧠 *1. Conversational Memory (Ephemeral)*\n"
+        "I retain context for our active session! We can converse naturally step-by-step. "
+        "_(e.g., You can say 'Schedule a meeting tomorrow', and if I ask 'What time?', you can just reply 'at 4 PM'.)_\n\n"
         
-        "⏱️ **2. Provide Details & Follow-ups**\n"
+        "⏱️ *2. Provide Details & Follow-ups*\n"
         "While I can ask follow-up questions if details are missing, providing complete info upfront is always faster. If you don't specify an end time, "
-        "I might set a **1-hour default**. *(Don't worry, we can always update it!)*\n\n"
+        "I might set a *1-hour default*. _(Don't worry, we can always update it!)_\n\n"
         
-        "📋 **3. Operation Guide (CRUD)**\n"
-        "• ➕ **CREATE:** Tell me the *Event Title, When (Date or Day), Start Time, and End Time*.\n"
-        "  *(e.g., 'Book a Team Sync tomorrow from 2 PM to 3:30 PM')*\n"
-        "• 📖 **READ:** Tell me the specific *Date or Timeframe* you want to check.\n"
-        "  *(e.g., 'What is my schedule for next Monday?')*\n"
-        "• ✏️ **UPDATE:** Tell me the *Exact Event Name* and the *New Details*.\n"
-        "  *(e.g., 'Change my Dentist appointment tomorrow to 10 AM')*\n"
-        "• ❌ **DELETE:** Tell me the *Exact Event Name* you want to remove.\n"
-        "  *(e.g., 'Cancel my Team Sync meeting')*\n\n"
+        "📋 *3. Operation Guide (CRUD)*\n"
+        "• ➕ *CREATE:* Tell me the Event Title, When (Date or Day), Start Time, and End Time.\n"
+        "  _(e.g., 'Book a Team Sync tomorrow from 2 PM to 3:30 PM')_\n"
+        "• 📖 *READ:* Tell me the specific Date or Timeframe you want to check.\n"
+        "  _(e.g., 'What is my schedule for next Monday?')_\n"
+        "• ✏️ *UPDATE:* Tell me the Exact Event Name and the New Details.\n"
+        "  _(e.g., 'Change my Dentist appointment tomorrow to 10 AM')_\n"
+        "• ❌ *DELETE:* Tell me the Exact Event Name you want to remove.\n"
+        "  _(e.g., 'Cancel my Team Sync meeting')_\n\n"
         
         "Send me a command whenever you're ready! 🚀"
     )
@@ -148,30 +148,31 @@ async def info_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     Handles the standard Telegram /info command.
 
     This asynchronous function serves as the "About" page for the bot, 
-    displaying its technical specifications, upgraded stateful architecture, 
+    displaying its technical specifications, ephemeral architecture, 
     and developer credits to the user.
     """
+    
     # 1. Safely extract the unique ID of the chat session to route the response
     chat_id = update.effective_chat.id
     
     # 2. Construct the technical specifications and system architecture payload
     info_text = (
-        "🤖 **ABOUT NOVACAL AI**\n"
+        "🤖 *ABOUT NOVACAL AI*\n"
         "━━━━━━━━━━━━━━━━━━━━━━\n"
         "NovaCal AI is a streamlined Virtual Assistant built for seamless Google Calendar management.\n\n"
         
-        "🛠️ **TECHNICAL SPECIFICATIONS:**\n"
-        "• **AI Model:** Google Gemini 2.5 Flash\n"
-        "• **Agent Framework:** LangChain (Tool-Calling Agent)\n"
-        "• **Integrations:** Google Calendar API v3 (Custom Search & CRUD Tools)\n"
-        "• **Architecture:** Stateful (SQL-Backed Conversational Memory)\n"
-        "• **Security:** Private Access Control & Activity Logging\n"
-        "• **Developers:** Silvio Christian, Joe\n\n"
+        "🛠️ *TECHNICAL SPECIFICATIONS:*\n"
+        "• *AI Model:* Google Gemini 2.5 Flash\n"
+        "• *Agent Framework:* LangChain (Tool-Calling Agent)\n"
+        "• *Integrations:* Google Calendar API v3 (Custom Search & CRUD Tools)\n"
+        "• *Architecture:* Ephemeral (In-Memory Conversational Context)\n"
+        "• *Security:* Private Access Control & Activity Logging\n"
+        "• *Developers:* Silvio Christian, Joe\n\n"
         
-        "⚡ **THE STATEFUL ADVANTAGE:**\n"
-        "Powered by a robust SQL database, NovaCal AI securely retains session context for natural, multi-turn conversations. This allows for dynamic follow-ups and complex scheduling adjustments without the need to repeat prior instructions.\n\n"
+        "⚡ *THE EPHEMERAL DESIGN:*\n"
+        "Utilizing lightweight, in-memory session management, NovaCal AI securely retains context for your active conversation. This allows for quick, natural follow-ups and dynamic scheduling without permanently storing your chat logs in a database.\n\n"
         
-        "Type /howtouse to read the operational guide!"
+        "Type /start to read the operational guide!"
     )
     
     # 3. Transmit the formatted information text back to the user asynchronously
@@ -186,50 +187,51 @@ async def howtouse_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     Handles the standard Telegram /howtouse command.
 
     This asynchronous function serves as the user manual for the bot.
-    It delivers a comprehensive guide on the operational rules (Stateful memory)
+    It delivers a comprehensive guide on the operational rules (Ephemeral memory)
     and provides specific examples for executing CRUD operations on the calendar.
 
     Args:
         update (telegram.Update): The payload containing incoming message details.
         context (telegram.ext.ContextTypes.DEFAULT_TYPE): The context object for API interactions.
     """
+    
     # 1. Safely extract the unique ID of the chat session to route the response
     chat_id = update.effective_chat.id
     
     # 2. Construct the comprehensive operational guide and cheat sheet payload
     howtouse_text = (
-        "📖 **NOVACAL AI - USER GUIDE**\n"
+        "📖 *NOVACAL AI - USER GUIDE*\n"
         "━━━━━━━━━━━━━━━━━━━━━━\n"
         "Welcome to your personal calendar command center. Please read the core rules below to ensure flawless execution.\n\n"
         
-        "🧠 **1. CONVERSATIONAL MEMORY**\n"
-        "I remember our ongoing conversation! You can give me instructions piece by piece or all at once.\n"
-        "✅ *Multi-turn Example:*\n"
+        "🧠 *1. CONVERSATIONAL MEMORY (EPHEMERAL)*\n"
+        "I retain context for our active session! You can give me instructions piece by piece or all at once.\n"
+        "✅ _Multi-turn Example:_\n"
         "You: 'Schedule a meeting for tomorrow.'\n"
         "Me: 'Sure, what time and what is the title?'\n"
         "You: 'Call it Team Sync, from 2 PM to 3 PM.'\n\n"
         
-        "⏱️ **2. PARAMETER SAFETY & FOLLOW-UPS**\n"
-        "Always try to define the duration! If you don't specify an end time, I will either **ask you a follow-up question** to confirm, or automatically assume a **1-hour duration** by default. *(Don't worry, we can always update it!)*\n\n"
+        "⏱️ *2. PARAMETER SAFETY & FOLLOW-UPS*\n"
+        "Always try to define the duration! If you don't specify an end time, I will either *ask you a follow-up question* to confirm, or automatically assume a *1-hour duration* by default. _(Don't worry, we can always update it!)_\n\n"
         
-        "⚙️ **3. COMMAND CHEAT SHEET (CRUD)**\n"
+        "⚙️ *3. COMMAND CHEAT SHEET (CRUD)*\n"
         "To perform actions, just talk to me naturally using these formats:\n\n"
         
-        "➕ **CREATE (Add an event)**\n"
-        "• *Required:* Title, When (Date/Day), Start Time, End Time.\n"
-        "• *Prompt:* 'Book a Team Sync tomorrow from 2:00 PM to 3:30 PM.'\n\n"
+        "➕ *CREATE (Add an event)*\n"
+        "• _Required:_ Title, When (Date/Day), Start Time, End Time.\n"
+        "• _Prompt:_ 'Book a Team Sync tomorrow from 2:00 PM to 3:30 PM.'\n\n"
         
-        "📖 **READ (Check your schedule)**\n"
-        "• *Required:* Date or Timeframe.\n"
-        "• *Prompt:* 'What is my schedule for next Monday?' or 'Do I have any meetings today?'\n\n"
+        "📖 *READ (Check your schedule)*\n"
+        "• _Required:_ Date or Timeframe.\n"
+        "• _Prompt:_ 'What is my schedule for next Monday?' or 'Do I have any meetings today?'\n\n"
         
-        "✏️ **UPDATE (Edit an event)**\n"
-        "• *Required:* Exact Event Name, Date, and the New Details.\n"
-        "• *Prompt:* 'Change my Dentist appointment tomorrow to start at 10 AM instead.'\n\n"
+        "✏️ *UPDATE (Edit an event)*\n"
+        "• _Required:_ Exact Event Name, Date, and the New Details.\n"
+        "• _Prompt:_ 'Change my Dentist appointment tomorrow to start at 10 AM instead.'\n\n"
         
-        "❌ **DELETE (Remove an event)**\n"
-        "• *Required:* Exact Event Name and Date.\n"
-        "• *Prompt:* 'Cancel my Team Sync meeting scheduled for tomorrow.'\n\n"
+        "❌ *DELETE (Remove an event)*\n"
+        "• _Required:_ Exact Event Name and Date.\n"
+        "• _Prompt:_ 'Cancel my Team Sync meeting scheduled for tomorrow.'\n\n"
         
         "Ready? Send me your first command! 🚀"
     )
@@ -385,20 +387,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             handle_parsing_errors=True
         )
 
-        # 8. Inject the In-Memory Wrapper
-        # This dynamically loads the user's ephemeral slot-filling memory from RAM
-        agent_with_memory = RunnableWithMessageHistory(
-            agent_executor, 
-            get_session_history=get_session_history,
-            input_messages_key="input",
-            history_messages_key="chat_history"
-        )
+        memory_buffer = get_session_history(str(user_id))
 
         # 9. Execute the Agent workflow using the User's unique session ID
-        response = agent_with_memory.invoke(
-            {"input": user_text},
-            config={"configurable": {"session_id": str(user_id)}}
-        )
+        response = agent_executor.invoke({
+            "input": user_text,
+            "chat_history": memory_buffer.messages
+        })
 
         # 10. Safely parse the LLM's output
         if "output" in response and len(response["output"]) > 0:
@@ -416,6 +411,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         else:
             final_answer = "Sorry, I am unable to process that scheduling request right now."
         
+        memory_buffer.add_user_message(user_text)
+        memory_buffer.add_ai_message(final_answer)
+
         # 11. THE MAGIC: AUTO-DESTRUCT MEMORY (SLOT RESET) 💥
         # If the AI signals that the CRUD calendar task is completed, we purge the RAM memory.
         # This prevents contextual drift, saves API tokens, and resets the agent for a fresh task.
