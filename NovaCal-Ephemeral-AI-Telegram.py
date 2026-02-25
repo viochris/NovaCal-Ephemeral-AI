@@ -316,7 +316,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
         # Capture the Exact Current System Time for Contextual Accuracy
         wib_timezone = timezone(timedelta(hours=7))
-        current_datetime = datetime.now(wib_timezone).strftime("%A, %d %B %Y %H:%M:%S")
+        current_datetime = datetime.now(wib_timezone).strftime("%Y-%m-%d %H:%M:%S WIB")
+
         
         # 4. Construct the Custom Hybrid Tool-Calling Prompt
         # This serves as the core "Brain" of the agent, defining strict Standard Operating Procedures (SOP).
